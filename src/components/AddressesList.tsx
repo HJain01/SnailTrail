@@ -1,4 +1,4 @@
-import {List, ListItem, TextField} from "@mui/material";
+import {List, ListItem, ListItemText, TextField} from "@mui/material";
 import "./AddressesList.css"
 import {useDispatch, useSelector} from "react-redux";
 import {add, getOrigins, remove} from "../store/slices/originsSlice";
@@ -36,20 +36,18 @@ export default function AddressesList(props: any) {
     }
 
     return (
-        <div>
-            <div className="rounded-border column-flex">
-                <div className="vertical-align">
-                    <TextField className="addresses-box"
-                               label={textBoxPlaceholder}
-                               value={origin}
-                               onChange={(e) => {
-                                   setOrigin(e.target.value);
-                               }}
-                               data-testid="address-input" onKeyDown={onEnterPress}/>
-                    <AddBoxIcon className="icon" onClick={addOrigin} data-testid="add-address-button" />
-                </div>
+        <div className="column-flex">
+            <div className="rounded-border input-grid">
+                <TextField className="addresses-box area-a"
+                           label={textBoxPlaceholder}
+                           value={origin}
+                           onChange={(e) => {
+                               setOrigin(e.target.value);
+                           }}
+                           data-testid="address-input" onKeyDown={onEnterPress}/>
+                <AddBoxIcon className="icon area-b" onClick={addOrigin} data-testid="add-address-button" />
                 {showError
-                    ? <p data-testid="error" className="validation-error">Type in address</p>
+                    ? <p data-testid="error" className="validation-error area-c">Type in address</p>
                     : null
                 }
             </div>
@@ -57,9 +55,15 @@ export default function AddressesList(props: any) {
                 {originsList.map((address: string, index: number) => {
                     return(
                         <ListItem key={index} className="address-item" secondaryAction={
-                            <DeleteIcon onClick={() => deleteAddress(index)} data-testid={`delete-${index}`} />
+                            <DeleteIcon
+                                onClick={() => deleteAddress(index)}
+                                data-testid={`delete-${index}`}
+                                className="icon"/>
                         }>
-                            <p className="address" data-testid={`address-${index}`}>{address}</p>
+                            <ListItemText
+                                className="address"
+                                data-testid={`address-${index}`}
+                                primary={address} />
                         </ListItem>
                     )
                 })}

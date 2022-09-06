@@ -1,3 +1,10 @@
+.column-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
 .rounded-border {
     border-radius: .75rem;
     border: 2px solid white;
@@ -5,41 +12,53 @@
     background-color: white;
 }
 
-.column-flex {
-    display: flex;
-    flex-direction: column;
+.input-grid {
+    display: grid;
+    grid-template-areas:
+    "a a a a a a a a b"
+    "c c c c c c c c c";
+    justify-items: center;
     align-items: center;
 }
 
-.vertical-align {
-    display: flex;
-    align-items: center;
+.area-a {
+    grid-area: a;
+}
+
+.area-b {
+    grid-area: b;
+}
+
+.area-c {
+    grid-area: c;
 }
 
 .icon {
-    margin: 0 .5rem;
+    scale: 1.5;
+    justify-self: end;
 }
 
 .addresses-box {
-    width: 17vw;
+    width: 100%;
 }
 
 .validation-error {
     color: red;
+    margin-bottom: 0;
 }
 
 .list-margin {
-    margin-top: .5vh;
+    margin-top: .5rem;
 }
 
 .address-item {
     border-radius: .75rem;
     border: 2px solid white;
     background-color: white;
-    height: 3.5vw;
-    margin-bottom: 1vh;
+    height: auto;
+    margin-bottom: 1rem;
 }
 
 .address {
-    margin-left: 1vw;
+    word-break: break-word;
 }
