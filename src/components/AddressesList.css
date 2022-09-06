@@ -1,0 +1,15 @@
+.list-margin {
+    margin-top: .5vh;
+}
+
+.address-item {
+    border-radius: .75rem;
+    border: 2px solid white;
+    background-color: white;
+    height: 3.5vw;
+    margin-bottom: 1vh;
+}
+
+.address {
+    margin-left: 1vw;
+}
