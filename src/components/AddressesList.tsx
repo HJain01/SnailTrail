@@ -16,7 +16,7 @@ export default function AddressesList() {
         <List className="list-margin">
             {originsList.map((address: string, index: number) => {
                 return(
-                    <ListItem className="address-item" secondaryAction={
+                    <ListItem key={index} className="address-item" secondaryAction={
                         <DeleteIcon onClick={() => deleteAddress(index)} />
                     }>
                         <p className="address">{address}</p>

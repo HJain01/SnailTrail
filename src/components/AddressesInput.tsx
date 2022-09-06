@@ -8,13 +8,15 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 export default function AddressesInput(props: any) {
     let typeOfAddress = props.typeOfAddress,
         textBoxPlaceholder = `Enter ${typeOfAddress} address`,
-        [origin, setOrigin] = useState("");
+        [origin, setOrigin] = useState(""),
+        [showError, setShowError] = useState(false);
     const dispatch = useDispatch();
 
     let addOrigin = () => {
         if (origin == "") {
-            alert("Input an address");
+            setShowError(true);
         } else {
+            setShowError(false);
             dispatch(add(origin));
         }
     }
@@ -30,6 +32,10 @@ export default function AddressesInput(props: any) {
                            data-testid="address-input"/>
                 <AddBoxIcon className="icon" onClick={addOrigin} data-testid="add-address-button" />
             </div>
+            {showError
+                ? <p data-testid="error" className="validation-error">Type in address</p>
+                : null
+            }
         </div>
     );
 }

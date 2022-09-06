@@ -1,20 +1,18 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import AddressesInput from "../components/AddressesInput";
+import {Provider} from "react-redux";
+import store from "../store/store";
 
-test('renders origin input box properly', () => {
-    render(<AddressesInput typeOfAddress="origin" />);
+test('renders validation error when no text is input', () => {
+    render(
+        <Provider store={store}>
+            <AddressesInput typeOfAddress="origin" />
+        </Provider>);
 
-    expect(screen.getByTestId("input-box")).toHaveTextContent("Type your origin addresses below")
-    expect(screen.getByTestId("input-box")).toHaveTextContent("Enter origin address")
-});
+    fireEvent.click(screen.getByTestId("add-address-button"));
 
-test('renders destination input box properly', () => {
-    render(<AddressesInput typeOfAddress="destination" />);
-
-    expect(screen.getByTestId("input-box")).toHaveTextContent("Type your destination addresses below")
-    expect(screen.getByTestId("input-box")).toHaveTextContent("Enter destination address")
-});
-
+    expect(screen.getByTestId("error").textContent).toEqual("Type in address");
+})
 // test('renders popup when no text is input', () => {
 //     render(<AddressesInput typeOfAddress="origin" />);
 //
