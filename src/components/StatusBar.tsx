@@ -4,7 +4,7 @@ import {Step, StepLabel, Stepper} from "@mui/material";
 export default function StatusBar(props: any) {
     let activeStep = props.activeStep;
     return (
-        <div className="align-end bottom-padding">
+        <div className="bottom-padding">
             <Stepper activeStep={activeStep}>
                 <Step>
                     <StepLabel>Origins</StepLabel>

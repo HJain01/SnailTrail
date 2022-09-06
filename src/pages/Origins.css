@@ -1,14 +1,11 @@
 body {
     background-color: lightgray;
-    padding: 2vh 2vw;
+    margin: 2vh 2vw;
 }
 
-.center-items {
-    max-width: 25vw;
+.flex {
+    display: flex;
+    flex-direction: column;
+    max-width: 40rem;
     margin: auto;
-}
-
-.next-step {
-    width: 100%;
-    height: 8vh;
 }

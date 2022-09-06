@@ -5,10 +5,10 @@ import {Button} from "@mui/material";
 
 export default function Origins() {
     return (
-        <div className="center-items">
+        <div className="flex">
             <StatusBar activeStep={0} />
             <AddressesList typeOfAddress="origin" />
-            <Button variant="contained" className="next-step">Next Step</Button>
+            <Button variant="contained" >Next Step</Button>
         </div>
     )
 }
