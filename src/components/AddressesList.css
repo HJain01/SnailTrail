@@ -19,6 +19,7 @@
     "c c c c c c c c c";
     justify-items: center;
     align-items: center;
+    margin-bottom: .5rem;
 }
 
 .area-a {
@@ -40,15 +41,6 @@
 
 .addresses-box {
     width: 100%;
-}
-
-.validation-error {
-    color: red;
-    margin-bottom: 0;
-}
-
-.list-margin {
-    margin-top: .5rem;
 }
 
 .address-item {

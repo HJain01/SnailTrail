@@ -1,5 +1,6 @@
+import "./AddressesList.css";
+import "../global.css";
 import {List, ListItem, ListItemText, TextField} from "@mui/material";
-import "./AddressesList.css"
 import {useDispatch, useSelector} from "react-redux";
 import {add, getOrigins, remove} from "../store/slices/originsSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -47,11 +48,13 @@ export default function AddressesList(props: any) {
                            data-testid="address-input" onKeyDown={onEnterPress}/>
                 <AddBoxIcon className="icon area-b" onClick={addOrigin} data-testid="add-address-button" />
                 {showError
-                    ? <p data-testid="error" className="validation-error area-c">Type in address</p>
+                    ? <p data-testid="error" className="validation-error area-c">
+                        *Invalid Address*
+                      </p>
                     : null
                 }
             </div>
-            <List className="list-margin">
+            <List>
                 {originsList.map((address: string, index: number) => {
                     return(
                         <ListItem key={index} className="address-item" secondaryAction={
