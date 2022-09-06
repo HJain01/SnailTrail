@@ -21,6 +21,7 @@ export default function AddressesList(props: any) {
         } else {
             setShowError(false);
             dispatch(add(origin));
+            setOrigin("");
         }
     }
 
@@ -30,10 +31,11 @@ export default function AddressesList(props: any) {
 
     return (
         <div>
-            <div className="rounded-border column-flex" data-testid="input-box">
+            <div className="rounded-border column-flex">
                 <div className="vertical-align">
                     <TextField className="addresses-box"
                                label={textBoxPlaceholder}
+                               value={origin}
                                onChange={(e) => {
                                    setOrigin(e.target.value);
                                }}
@@ -49,9 +51,9 @@ export default function AddressesList(props: any) {
                 {originsList.map((address: string, index: number) => {
                     return(
                         <ListItem key={index} className="address-item" secondaryAction={
-                            <DeleteIcon onClick={() => deleteAddress(index)} />
+                            <DeleteIcon onClick={() => deleteAddress(index)} data-testid={`delete-${index}`} />
                         }>
-                            <p className="address">{address}</p>
+                            <p className="address" data-testid={`address-${index}`}>{address}</p>
                         </ListItem>
                     )
                 })}
