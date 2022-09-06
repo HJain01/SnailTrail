@@ -1,12 +1,12 @@
 import {fireEvent, render, screen} from "@testing-library/react";
-import AddressesInput from "../components/AddressesInput";
 import {Provider} from "react-redux";
 import store from "../store/store";
+import AddressesList from "../components/AddressesList";
 
 test('renders validation error when no text is input', () => {
     render(
         <Provider store={store}>
-            <AddressesInput typeOfAddress="origin" />
+            <AddressesList typeOfAddress="origin" />
         </Provider>);
 
     fireEvent.click(screen.getByTestId("add-address-button"));
