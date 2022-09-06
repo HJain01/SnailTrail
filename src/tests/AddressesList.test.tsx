@@ -1,23 +1,30 @@
-import {fireEvent, render, screen} from "@testing-library/react";
-import {Provider} from "react-redux";
-import store from "../store/store";
+import {fireEvent, screen} from "@testing-library/react";
 import AddressesList from "../components/AddressesList";
+import {renderWithProviders} from "./testUtils";
 
 test('renders validation error when no text is input', () => {
-    render(
-        <Provider store={store}>
-            <AddressesList typeOfAddress="origin" />
-        </Provider>);
+    renderWithProviders(<AddressesList typeOfAddress="origin" />);
 
     fireEvent.click(screen.getByTestId("add-address-button"));
 
     expect(screen.getByTestId("error").textContent).toEqual("Type in address");
-})
-// test('renders popup when no text is input', () => {
-//     render(<AddressesInput typeOfAddress="origin" />);
-//
-//     fireEvent.change(screen.getByTestId("address-input"), {target: {value: "123 Test Street"}});
-//     fireEvent.click(screen.getByTestId("add-address-button"));
-//
-//     expect(screen.getByTestId("address-input").textContent).toMatch("123 ")
-// })
+});
+
+test('renders list item when adding address', () => {
+    renderWithProviders(<AddressesList typeOfAddress="origin" />);
+
+    fireEvent.change(screen.getByRole("textbox"), {target: {value: "123 Test Street"}});
+    fireEvent.click(screen.getByTestId("add-address-button"));
+
+    expect(screen.getByTestId("address-0").textContent).toMatch("123 Test Street")
+});
+
+test('deletes list item', () => {
+    renderWithProviders(<AddressesList typeOfAddress="origin" />);
+
+    fireEvent.change(screen.getByRole("textbox"), {target: {value: "123 Test Street"}});
+    fireEvent.click(screen.getByTestId("add-address-button"));
+    fireEvent.click(screen.getByTestId("delete-0"));
+
+    expect(screen.queryByTestId("address-0")).not.toBeInTheDocument();
+});
