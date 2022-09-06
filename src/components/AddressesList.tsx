@@ -29,6 +29,12 @@ export default function AddressesList(props: any) {
         dispatch(remove(originsList[index]));
     }
 
+    const onEnterPress = (e: any) => {
+        if (e.key == 'Enter') {
+            addOrigin();
+        }
+    }
+
     return (
         <div>
             <div className="rounded-border column-flex">
@@ -39,7 +45,7 @@ export default function AddressesList(props: any) {
                                onChange={(e) => {
                                    setOrigin(e.target.value);
                                }}
-                               data-testid="address-input"/>
+                               data-testid="address-input" onKeyDown={onEnterPress}/>
                     <AddBoxIcon className="icon" onClick={addOrigin} data-testid="add-address-button" />
                 </div>
                 {showError
