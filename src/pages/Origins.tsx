@@ -1,4 +1,3 @@
-import "./Origins.css";
 import "../global.css";
 import StatusBar from "../components/StatusBar";
 import AddressesList from "../components/AddressesList";
@@ -6,13 +5,17 @@ import {Button} from "@mui/material";
 import {useSelector} from "react-redux";
 import {getOrigins} from "../store/slices/originsSlice";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function Origins() {
     let [showError, setShowError] = useState(false),
-        origins = useSelector(getOrigins);
+        origins = useSelector(getOrigins),
+        navigate = useNavigate();
     const navigateToDestinations = () => {
         if (origins.length == 0) {
             setShowError(true);
+        } else {
+            navigate("/destinations")
         }
     }
 

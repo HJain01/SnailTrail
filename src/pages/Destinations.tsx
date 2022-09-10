@@ -1,4 +1,4 @@
-import "./Origins.css";
+import "./Destinations.css";
 import "../global.css";
 import StatusBar from "../components/StatusBar";
 import AddressesList from "../components/AddressesList";
@@ -6,11 +6,13 @@ import {Button} from "@mui/material";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getDestinations} from "../store/slices/destinationsSlice";
+import {useNavigate} from "react-router-dom";
 
 export default function Destinations() {
     let [showError, setShowError] = useState(false),
-        destinations = useSelector(getDestinations);
-    const navigateToDestinations = () => {
+        destinations = useSelector(getDestinations),
+        navigate = useNavigate();
+    const navigateToResults = () => {
         if (destinations.length == 0) {
             setShowError(true);
         }
@@ -26,7 +28,10 @@ export default function Destinations() {
         <div className="flex">
             <StatusBar activeStep={1} />
             <AddressesList typeOfAddress="destination" addressList={destinations} />
-            <Button variant="contained" onClick={navigateToDestinations} >Calculate Best Destination</Button>
+            <div className="navigate-buttons-div">
+                <Button className="navigate-button" variant="contained" onClick={() => navigate("/")} >Origins</Button>
+                <Button className="navigate-button" variant="contained" onClick={navigateToResults} >Calculate Best Destination</Button>
+            </div>
             { showError
                 ? <p className="validation-error">
                     *Need at least 1 destination address*
