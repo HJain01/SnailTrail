@@ -5,7 +5,7 @@ import AddressesList from "../components/AddressesList";
 import {Button} from "@mui/material";
 import {useSelector} from "react-redux";
 import {getOrigins} from "../store/slices/originsSlice";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function Origins() {
     let [showError, setShowError] = useState(false),
@@ -15,6 +15,12 @@ export default function Origins() {
             setShowError(true);
         }
     }
+
+    useEffect(() => {
+        if (origins.length > 0) {
+            setShowError(false);
+        }
+    })
 
     return (
         <div className="flex">
