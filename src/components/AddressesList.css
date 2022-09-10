@@ -14,9 +14,10 @@
 
 .input-grid {
     display: grid;
+    grid-template-columns: 14fr 1fr;
     grid-template-areas:
-    "a a a a a a a a b"
-    "c c c c c c c c c";
+    "a b"
+    "c c";
     justify-items: center;
     align-items: center;
     margin-bottom: .5rem;
