@@ -1,15 +1,17 @@
 import "./StatusBar.css"
 import {Step, StepLabel, Stepper} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 export default function StatusBar(props: any) {
-    let activeStep = props.activeStep;
+    let activeStep = props.activeStep,
+        navigate = useNavigate();
     return (
         <div className="bottom-padding stepper-margin">
             <Stepper activeStep={activeStep} alternativeLabel>
-                <Step>
+                <Step onClick={() => navigate("/")}>
                     <StepLabel>Origins</StepLabel>
                 </Step>
-                <Step>
+                <Step onClick={() => navigate("/destinations")}>
                     <StepLabel>Destinations</StepLabel>
                 </Step>
                 <Step>
