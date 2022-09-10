@@ -1,11 +1,8 @@
-body {
-    background-color: lightgray;
-    margin: 2vh 2vw;
+.navigate-buttons-div {
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.flex {
-    display: flex;
-    flex-direction: column;
-    max-width: 40rem;
-    margin: auto;
+.navigate-button {
+    width: 49%;
 }
