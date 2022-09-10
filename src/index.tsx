@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./store/store";
 import {Provider} from "react-redux";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Destinations from "./pages/Destinations";
+import Origins from "./pages/Origins";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,7 +28,12 @@ root.render(
   <Provider store={store}>
 
     <ThemeProvider theme={theme}>
-        <App />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Origins/>} />
+                <Route path="/destinations" element={<Destinations/>} />
+            </Routes>
+        </BrowserRouter>
     </ThemeProvider>
   </Provider>
 );
