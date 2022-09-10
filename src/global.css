@@ -1,0 +1,6 @@
+.validation-error {
+    color: #ff0000;
+    margin-bottom: 0;
+    font-weight: bold;
+    justify-self: start;
+}

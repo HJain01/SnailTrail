@@ -1,0 +1,12 @@
+.align-end {
+    display: flex;
+    justify-content: end;
+}
+
+.bottom-padding {
+    padding-bottom: 1vh;
+}
+
+.stepper-margin {
+    margin-bottom: 2rem;
+}
