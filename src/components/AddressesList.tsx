@@ -1,38 +1,54 @@
 import "./AddressesList.css";
 import "../global.css";
 import {List, ListItem, ListItemText, TextField} from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {add, getOrigins, remove} from "../store/slices/originsSlice";
+import {useDispatch} from "react-redux";
+import {add as addOrigin, remove as removeOrigin} from "../store/slices/originsSlice";
+import {add as addDestination, remove as removeDestination} from "../store/slices/destinationsSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import React, {useState} from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
 export default function AddressesList(props: any) {
     let typeOfAddress = props.typeOfAddress,
+        addressList = props.addressList,
         textBoxPlaceholder = `Enter ${typeOfAddress} address`,
-        [origin, setOrigin] = useState(""),
-        [showError, setShowError] = useState(false),
-        originsList = useSelector(getOrigins);
+        [address, setAddress] = useState(""),
+        [showError, setShowError] = useState(false);
 
     const dispatch = useDispatch();
 
-    let addOrigin = () => {
-        if (origin == "") {
-            setShowError(true);
-        } else {
-            setShowError(false);
-            dispatch(add(origin));
-            setOrigin("");
+    const dispatchAdd = (address: string) => {
+        if (typeOfAddress === "origin") {
+            dispatch(addOrigin(address))
+        } else if (typeOfAddress === "destination") {
+            dispatch(addDestination(address))
+        }
+    }
+    const dispatchRemove = (index: number) => {
+        if (typeOfAddress === "origin") {
+            dispatch(removeOrigin(index))
+        } else if (typeOfAddress === "destination") {
+            dispatch(removeDestination(index))
         }
     }
 
+    let addAddress = () => {
+        if (address == "") {
+            setShowError(true);
+        } else {
+            setShowError(false);
+            dispatchAdd(address);
+            setAddress("");
+        }
+    };
+
     const deleteAddress = (index: number) => {
-        dispatch(remove(originsList[index]));
+        dispatchRemove(index);
     }
 
     const onEnterPress = (e: any) => {
         if (e.key == 'Enter') {
-            addOrigin();
+            addAddress();
         }
     }
 
@@ -41,12 +57,12 @@ export default function AddressesList(props: any) {
             <div className="rounded-border input-grid">
                 <TextField className="addresses-box area-a"
                            label={textBoxPlaceholder}
-                           value={origin}
+                           value={address}
                            onChange={(e) => {
-                               setOrigin(e.target.value);
+                               setAddress(e.target.value);
                            }}
                            data-testid="address-input" onKeyDown={onEnterPress}/>
-                <AddBoxIcon className="icon area-b" onClick={addOrigin} data-testid="add-address-button" />
+                <AddBoxIcon className="icon area-b" onClick={addAddress} data-testid="add-address-button" />
                 {showError
                     ? <p data-testid="error" className="validation-error area-c">
                         *Invalid Address*
@@ -55,7 +71,7 @@ export default function AddressesList(props: any) {
                 }
             </div>
             <List>
-                {originsList.map((address: string, index: number) => {
+                {addressList.map((address: string, index: number) => {
                     return(
                         <ListItem key={index} className="address-item" secondaryAction={
                             <DeleteIcon

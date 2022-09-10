@@ -25,7 +25,7 @@ export default function Origins() {
     return (
         <div className="flex">
             <StatusBar activeStep={0} />
-            <AddressesList typeOfAddress="origin" />
+            <AddressesList typeOfAddress="origin" addressList={origins} />
             <Button variant="contained" onClick={navigateToDestinations} >Next Step</Button>
             { showError
                 ? <p className="validation-error">
