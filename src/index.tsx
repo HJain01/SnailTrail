@@ -5,13 +5,29 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./store/store";
 import {Provider} from "react-redux";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+export const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#003cff'
+        },
+        secondary: {
+            main: '#f44336'
+        },
+    },
+});
+
 root.render(
   <Provider store={store}>
-    <App />
+
+    <ThemeProvider theme={theme}>
+        <App />
+    </ThemeProvider>
   </Provider>
 );
 
