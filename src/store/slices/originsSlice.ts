@@ -4,7 +4,7 @@ const addOriginToArray = (state: string[], action: any) => {
     state.push(action.payload);
 }
 
-const removeOriginToArray = (state: string[], action: any) => {
+const removeOriginFromArray = (state: string[], action: any) => {
     let originIndex = state.indexOf(action.payload);
     state.splice(originIndex, 1);
 }
@@ -14,7 +14,7 @@ export const originsSlice = createSlice({
     initialState: [],
     reducers: {
         add: addOriginToArray,
-        remove: removeOriginToArray
+        remove: removeOriginFromArray
     }
 });
 
